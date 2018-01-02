@@ -2,10 +2,10 @@
   "name": "sunriseapi",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "test": "mocha client/src/models/specs",
+    "start": "mongo < seeds.js && nodemon server.js",
     "webpack": "cd client && webpack -w"
   },
   "author": "",
@@ -13,9 +13,11 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "mocha": "^4.1.0",
     "mongodb": "^3.0.1",
-    "nodemon": "^1.14.7",
+    "nodemon": "^1.14.7"
+  },
+  "devDependencies": {
+    "mocha": "^4.1.0",
     "webpack": "^3.10.0"
   }
 }

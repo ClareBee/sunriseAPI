@@ -1,7 +1,5 @@
 var express = require('express');
 var app = express();
-//the path module provides utilities for working with file and directory paths
-var path = require('path');
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -30,7 +28,7 @@ app.get("/mytable", function(req, res){
 //join method allows us to chain variables to make a path, avoiding issues with different operating systems treating slashes differently
 //__dirname is a native Node variable which contains the file path of the current folder
 app.get('/', function(req, res){
-  res.sendFile(path.join(__dirname + '/index.html'));
+  res.sendFile(path.join(__dirname + '/build/index.html'));
 });
 
 app.use(express.static('public'));
