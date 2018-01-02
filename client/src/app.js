@@ -11,11 +11,17 @@ var requestComplete = function(){
   if(this.status !== 200) return;
   var jsonString = this.responseText;
 
-  var results = JSON.parse(jsonString);
-  console.log(results);
+  var apiData = JSON.parse(jsonString);
+  console.log(apiData);
+  showSunInfo(apiData);
   alert('app is working');
 }
-
+var showSunInfo = function(apiData){
+  var sunriseTime = document.getElementById('sunrise');
+  sunriseTime.innerHTML = apiData.results.sunrise;
+  var sunsetTime = document.getElementById('sunset');
+  sunsetTime.innerHTML = apiData.results.sunset;
+}
 var getLatLong = function(){
   var target = document.getElementById('latitude');
   var lat = document.getElementById('latitude').innerHTML;
