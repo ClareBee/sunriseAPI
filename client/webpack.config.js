@@ -1,3 +1,5 @@
+
+
 var config = {
   entry: __dirname + "/src/app.js",
   output: {
@@ -5,6 +7,6 @@ var config = {
     path: __dirname + "/build"
   },
   devtool: 'source-map'
-}
+};
 
 module.exports = config;
