@@ -85,6 +85,17 @@ var requestComplete = function(){
   alert('app is working');
 }
 
+var getLatLong = function(){
+  var target = document.getElementById('latitude');
+  var lat = document.getElementById('latitude').innerHTML;
+  var long = document.getElementById('longitude').innerHTML;
+  if(target.className == "locationAdded"){
+     var sunriseurl = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`;
+     makeRequest(sunriseurl, requestComplete);
+     target.className = "";
+  };
+}
+
 var createMap = function(){
   var container = document.getElementById("map");
   var center = { lat: 56.740674, lng: -4.2187500 };
@@ -95,17 +106,15 @@ var createMap = function(){
   mainMap.userLocation();
   // search box
   mainMap.createSearchBox();
+
 };
 
 
 var app = function(){
   createMap();
-  var latitude = 36.7201600;
-  var longitude = -4.4203400;
-  var url = `https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}`;
-  var map = new
-  makeRequest(url, requestComplete);
-
+  setTimeout(function() {
+    getLatLong();
+  }, 6000);
 }
 
 window.addEventListener('load', app);
@@ -115,25 +124,14 @@ window.addEventListener('load', app);
 /* 1 */
 /***/ (function(module, exports) {
 
+
 var MapWrapper = function(container, coords, zoom){
   this.googleMap = new google.maps.Map(container, {
     center: coords,
     zoom: zoom
   });
-  this.directionInfoWindow = [];
   this.markers = [];
-  //new markers will contain user location or search location
-  this.newMarkers = [];
-  this.directionDisplay = new google.maps.DirectionsRenderer({
-    map: this.googleMap,
-    markerOptions: {
-      zIndex: -15,
-      visible: false
-    }
-  });
-  this.directionsShowing = true;
 };
-
 
 MapWrapper.prototype.createSearchBox = function(){
   // Create the search box and link it to the UI element.
@@ -145,8 +143,6 @@ MapWrapper.prototype.createSearchBox = function(){
   searchBox.addListener('bounds_changed', function() {
     searchBox.setBounds(this.getBounds());
   });
-
-  var markers = [];
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener('places_changed', function() {
@@ -176,9 +172,19 @@ MapWrapper.prototype.createSearchBox = function(){
     }.bind(this));
     this.googleMap.fitBounds(bounds);
   }.bind(this));
-}
+};
+
+MapWrapper.prototype.removeMarker = function(){
+  if(this.markers.length >= 1){
+    var last = this.markers.pop();
+    last.setMap(null);
+  }else{
+    console.log("nothing to remove");
+  };
+};
 
 MapWrapper.prototype.createMarker = function(place){
+  this.removeMarker();
   var icon = {
     url: place.icon,
     size: new google.maps.Size(71, 71),
@@ -192,7 +198,22 @@ MapWrapper.prototype.createMarker = function(place){
     icon: icon,
     position: place.geometry.location
   });
+  var locate = place.geometry.location;
+  newMarker.infowindow = new google.maps.InfoWindow({
+    content: "Your new location"
+  });
+  newMarker.infowindow.open(this.googleMap, newMarker);
+  this.markers.push(newMarker);
+  this.showCoords(newMarker);
 };
+
+MapWrapper.prototype.showCoords = function(marker){
+  var lat = document.getElementById("latitude");
+  var long = document.getElementById("longitude");
+  lat.className = "locationAdded";
+  lat.innerHTML = marker.position.lat();
+  long.innerHTML = marker.position.lng();
+}
 
 MapWrapper.prototype.userLocation = function(){
   navigator.geolocation.getCurrentPosition(function(position){
@@ -203,9 +224,9 @@ MapWrapper.prototype.userLocation = function(){
     var marker = new google.maps.Marker({
       position: coords,
       infoWindowOpen: false,
-      map: this.googleMap
-  });
-
+      map: this.googleMap,
+    });
+    this.markers.push(marker);
     var contentString = '<div id="content">' +
     '<div id="bodyContent">' +
     `<h3 id="user-loc">You are here</h3>` +
@@ -216,8 +237,10 @@ MapWrapper.prototype.userLocation = function(){
     });
     marker.infowindow.open(this.googleMap, marker);
     marker.infowindowOpen = true;
-    this.newMarkers.push(marker);
+    this.showCoords(marker);
+    console.log(marker + "hi");
   }.bind(this));
+
 };
 
 module.exports = MapWrapper;

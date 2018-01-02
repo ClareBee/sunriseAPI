@@ -16,6 +16,17 @@ var requestComplete = function(){
   alert('app is working');
 }
 
+var getLatLong = function(){
+  var target = document.getElementById('latitude');
+  var lat = document.getElementById('latitude').innerHTML;
+  var long = document.getElementById('longitude').innerHTML;
+  if(target.className == "locationAdded"){
+     var sunriseurl = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`;
+     makeRequest(sunriseurl, requestComplete);
+     target.className = "";
+  };
+}
+
 var createMap = function(){
   var container = document.getElementById("map");
   var center = { lat: 56.740674, lng: -4.2187500 };
@@ -26,17 +37,15 @@ var createMap = function(){
   mainMap.userLocation();
   // search box
   mainMap.createSearchBox();
+
 };
 
 
 var app = function(){
   createMap();
-  var latitude = 36.7201600;
-  var longitude = -4.4203400;
-  var url = `https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}`;
-  var map = new
-  makeRequest(url, requestComplete);
-
+  setTimeout(function() {
+    getLatLong();
+  }, 6000);
 }
 
 window.addEventListener('load', app);
