@@ -83,14 +83,15 @@ var requestComplete = function(){
   var apiData = JSON.parse(jsonString);
   console.log(apiData);
   showSunInfo(apiData);
-  alert('app is working');
 }
+
 var showSunInfo = function(apiData){
   var sunriseTime = document.getElementById('sunrise');
   sunriseTime.innerHTML = apiData.results.sunrise;
   var sunsetTime = document.getElementById('sunset');
   sunsetTime.innerHTML = apiData.results.sunset;
 }
+
 var getLatLong = function(){
   var target = document.getElementById('latitude');
   var lat = document.getElementById('latitude').innerHTML;
@@ -120,7 +121,11 @@ var app = function(){
   createMap();
   setTimeout(function() {
     getLatLong();
-  }, 6000);
+  }, 5000);
+  var googlemap = document.getElementById("map");
+  googlemap.addEventListener('change', function(){
+    getLatLong();
+  });
 }
 
 window.addEventListener('load', app);
