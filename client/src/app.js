@@ -5,7 +5,7 @@ var makeRequest = function(url, callback){
   request.open("GET", url);
   request.addEventListener("load", callback);
   request.send();
-}
+};
 
 var requestComplete = function(){
   if(this.status !== 200) return;
@@ -14,14 +14,14 @@ var requestComplete = function(){
   var apiData = JSON.parse(jsonString);
   console.log(apiData);
   showSunInfo(apiData);
-}
+};
 
 var showSunInfo = function(apiData){
   var sunriseTime = document.getElementById('sunrise');
   sunriseTime.innerHTML = apiData.results.sunrise;
   var sunsetTime = document.getElementById('sunset');
   sunsetTime.innerHTML = apiData.results.sunset;
-}
+};
 
 var getLatLong = function(){
   var target = document.getElementById('latitude');
@@ -32,7 +32,7 @@ var getLatLong = function(){
      makeRequest(sunriseurl, requestComplete);
      target.className = "";
   };
-}
+};
 
 var createMap = function(){
   var container = document.getElementById("map");
@@ -47,7 +47,6 @@ var createMap = function(){
 
 };
 
-
 var app = function(){
   createMap();
   setTimeout(function() {
@@ -57,6 +56,6 @@ var app = function(){
   googlemap.addEventListener('change', function(){
     getLatLong();
   });
-}
+};
 
 window.addEventListener('load', app);
