@@ -61,7 +61,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Simply type the place you're looking for into the map and see what time the sun rises. <br> If you have a favourite place, add it to a list to check later!
+        Simply start typing the place you're looking for into the map, select one of the results and see what time the sun rises. <hr /> If you have a favourite place, add it to the list to check later!
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -83,6 +83,7 @@
     <form method="POST" action="/places" class="col-md-6">
     <section>
       <h3 id="placeName"></h3>
+      <h4 id="hours-to-go"></h4>
       <input type="hidden" id="name" name="name">
       <br>
       <h2>Sunrise:</h2>
@@ -101,7 +102,7 @@
   </div>
 <hr />
 <section class="container" id="favs">
-  <h3 id="fav-title">Favourites:</h3>
+  <h2 id="fav-title">Favourites:</h2>
   <div class="latestSunrise" id="hidden">Latest sunrise at this location: <p id="time"></p></div>
   <br>
   <ul id="fav-list" class="list-group">

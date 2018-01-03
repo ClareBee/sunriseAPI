@@ -50,6 +50,10 @@ app.post("/places", function(req, res){
 
 app.post("/places/:id/delete", function(req, res){
   var id = new ObjectId(req.params.id);
-  db.collection("places").remove({_id: id});
-  res.redirect("/");
+  if(db.collection("places").length > 1){
+    db.collection("places").remove({_id: id});
+    res.redirect("/");
+  } else {
+    console.log("This can't be deleted");
+  };
 });

@@ -40,7 +40,9 @@ var showFavInfo = function(dbData){
     li.className = "list-group-item";
     li.innerHTML = '<form action="/places/' + fav._id + '/delete" method="POST"><input type="hidden" value="' + fav.latitude + ',' + fav.longitude + '">' + fav.name + '<button type="submit" class="pull-right btn btn-secondary">Delete</button></form>';
     var searchButton = document.createElement('button');
-    searchButton.innerHTML = '<button id="sunriseBtn" type="button" class="searchBtn btn btn-primary pull-right"> Get sunrise</button>';
+    searchButton.innerHTML = '<button id="sunriseBtn" type="button" class="searchBtn btn btn-primary"> Get sunrise</button>';
+    searchButton.style.marginTop = "20px";
+    searchButton.style.fontSize = "200%";
     li.append(searchButton);
     searchButton.addEventListener("click", function(){
       var input = this.previousSibling.childNodes[0];
@@ -105,10 +107,8 @@ var calculateTime = function(apiData){
   } else {
     hoursToGo = (mins - minsNow)/60;
   }
-  var title = document.getElementById("placeName");
-  var result = document.createElement("h4");
-  result.textContent = hoursToGo.toFixed(2) + " hours to go until the next sunrise";
-  title.append(result);
+  var timeLeft = document.getElementById("hours-to-go");
+  timeLeft.textContent = hoursToGo.toFixed(2) + " hours to go until the next sunrise";
 }
 
 var createMap = function(){
@@ -125,10 +125,9 @@ var createMap = function(){
 };
 
 var app = function(){
-  window.scrollTo(0, 0);
   var url = "/places";
   makeRequest(url, requestCompleteFav);
-
+  window.scrollTo(0, 0);
   createMap();
   setTimeout(function() {
     getLatLong();
