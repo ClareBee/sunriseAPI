@@ -6,6 +6,10 @@ body {
    height: 400px;
    width: 100%;
  }
+#pano {
+     height: 400px;
+     width: 100%;
+   }
 #description {
        font-family: Roboto;
        font-size: 15px;
