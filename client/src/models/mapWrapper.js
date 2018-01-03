@@ -138,10 +138,11 @@ MapWrapper.prototype.createSearchBox = function(){
 };
 MapWrapper.prototype.getLocationName = function(place){
   var location = document.getElementById('placeName');
-  if(place.formatted_address = "undefined"){
+  console.log(place);
+  if(place.name == null){
     location.innerHTML = "Your location";
   } else {
-    location.innerHTML = place.formatted_address;
+    location.innerHTML = place.name;
   }
 };
 MapWrapper.prototype.removeMarker = function(){
@@ -168,7 +169,6 @@ MapWrapper.prototype.createMarker = function(place){
     icon: icon,
     position: place.geometry.location
   });
-  console.log(place);
   this.getLocationName(place);
   var locate = place.geometry.location;
   var newLocationString = '<div class="content">' +
