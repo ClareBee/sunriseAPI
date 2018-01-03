@@ -80,24 +80,26 @@
      <div id="map"></div>
      <div id="pano"></div>
    </div>
-    <section class="col-md">
-    <h3>Latitude:</h3>
-    <p id="latitude"></p>
-    <h3>Longitude:</h3>
-    <p id="longitude"></p>
-  </section>
   <section class="col-md">
+    <h3 id="placeName"></h3>
+  </section>
     <h3>Sunrise:</h3>
     <p id="sunrise"></p>
     <h3>Sunset</h3>
     <p id="sunset"></p>
   </section>
+  <section id="hiddenCoords" class="col-md">
+  <h3>Latitude:</h3>
+  <p id="latitude"></p>
+  <h3>Longitude:</h3>
+  <p id="longitude"></p>
+  </section>
+  <button class="btn btn-secondary">Add Location to Favourites</button>
 </div>
 <hr />
 <section class="container" id="favs">
   <h3>Favourites:</h3>
   <ul id="fav-list" class="list-group">
-  <!-- <li class="list-group-item"><button class="pull-right btn btn-secondary">Delete</button></li> -->
 </ul>
 </section>
 </main>

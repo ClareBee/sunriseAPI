@@ -24,7 +24,7 @@ var showFavInfo = function(dbData){
       var ul = document.getElementById("fav-list");
       var li = document.createElement("li");
       li.className = "list-group-item";
-      li.innerHTML = fav.place + fav.sunrise + '<button class="pull-right btn btn-primary">Delete</button>';
+      li.innerHTML = fav.place + fav.sunrise + '<button class="pull-right btn btn-secondary">Delete</button>';
       ul.append(li);
   }
 };

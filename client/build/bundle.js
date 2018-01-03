@@ -93,7 +93,7 @@ var showFavInfo = function(dbData){
       var ul = document.getElementById("fav-list");
       var li = document.createElement("li");
       li.className = "list-group-item";
-      li.innerHTML = fav.place + fav.sunrise + '<button class="pull-right btn btn-primary">Delete</button>';
+      li.innerHTML = fav.place + fav.sunrise + '<button class="pull-right btn btn-secondary">Delete</button>';
       ul.append(li);
   }
 };
@@ -298,7 +298,14 @@ MapWrapper.prototype.createSearchBox = function(){
     this.googleMap.fitBounds(bounds);
   }.bind(this));
 };
-
+MapWrapper.prototype.getLocationName = function(place){
+  var location = document.getElementById('placeName');
+  if(place.formatted_address = "undefined"){
+    location.innerHTML = "Your location";
+  } else {
+    location.innerHTML = place.formatted_address;
+  }
+};
 MapWrapper.prototype.removeMarker = function(){
   if(this.markers.length >= 1){
     var last = this.markers.pop();
@@ -323,6 +330,8 @@ MapWrapper.prototype.createMarker = function(place){
     icon: icon,
     position: place.geometry.location
   });
+  console.log(place);
+  this.getLocationName(place);
   var locate = place.geometry.location;
   var newLocationString = '<div class="content">' +
       '<div class="bodyContent">' +
@@ -370,6 +379,7 @@ MapWrapper.prototype.userLocation = function(){
       map: this.googleMap,
     });
     this.markers.push(marker);
+    this.getLocationName(position);
     var contentString = '<div id="content">' +
     '<div id="bodyContent">' +
     `<h3 id="user-loc">You are here</h3>` +
