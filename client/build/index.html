@@ -61,7 +61,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Simply type the place you're looking for into the map and see what time the sun rises anywhere in the world! <br> If you have a favourite place, add it to a list to check later!
+        Simply type the place you're looking for into the map and see what time the sun rises. <br> If you have a favourite place, add it to a list to check later!
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -80,7 +80,8 @@
          <div id="map"></div>
          <div id="pano"></div>
      </div>
-    <section class="col-md-6">
+    <form method="POST" action="/places" class="col-md-6">
+    <section>
       <h3 id="placeName"></h3>
       <br>
       <h2>Sunrise:</h2>
@@ -88,20 +89,30 @@
       <h3>Sunset:</h3>
       <p id="sunset"></p>
       <br>
-      <button class="btn btn-secondary">Add Location to Favourites</button>
     </section>
-    <section id="hiddenCoords" class="col-md">
+      <section id="hiddenCoords">
+        <h3>Latitude:</h3>
+        <p id="latitude"></p>
+        <h3>Longitude:</h3>
+        <p id="longitude"></p>
+      </section>
+      <button type="submit" class="btn btn-secondary pull-right">Add Location to Favourites</button>
+
+  </form>
+    <!-- <section id="hiddenCoords" class="col-md">
       <h3>Latitude:</h3>
       <p id="latitude"></p>
       <h3>Longitude:</h3>
       <p id="longitude"></p>
-    </section>
+    </section> -->
   </div>
 <hr />
 <section class="container" id="favs">
   <h3>Favourites:</h3>
+  <br>
   <ul id="fav-list" class="list-group">
-</ul>
+  </ul>
+  <br>
 </section>
 </main>
 <footer></footer>

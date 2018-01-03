@@ -32,3 +32,24 @@ app.get("/places", function(req, res){
     res.json(results);
   });
 });
+
+app.post("/places", function(req, res){
+  db.collection("places").save(req.body, function(err, result){
+    if(err){
+      return console.log(err);
+    }
+    console.log("saved to database");
+    res.redirect("/");
+  });
+});
+
+// app.post("/delete", function(req, res){
+//   db.collection("places").remove();
+//   res.redirect("/");
+// });
+
+app.post("/places/:id/delete", function(req, res){
+  var id = new ObjectId(req.params.id);
+  db.collection("places").remove({_id: id});
+  res.redirect("/");
+});

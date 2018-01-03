@@ -88,13 +88,12 @@ var requestCompleteFav = function(){
 }
 
 var showFavInfo = function(dbData){
-    for(fav of dbData){
-      console.log(fav);
-      var ul = document.getElementById("fav-list");
-      var li = document.createElement("li");
-      li.className = "list-group-item";
-      li.innerHTML = fav.place + fav.sunrise + '<button class="pull-right btn btn-secondary">Delete</button>';
-      ul.append(li);
+  for(fav of dbData){
+    var ul = document.getElementById("fav-list");
+    var li = document.createElement("li");
+    li.className = "list-group-item";
+    li.innerHTML = '<form action="/places/' + fav._id + '/delete" method="POST" >' + fav.place + fav.sunrise + '<button type="submit" class="pull-right btn btn-secondary">Delete</button></form>';
+    ul.append(li);
   }
 };
 
@@ -105,6 +104,7 @@ var requestComplete = function(){
   var apiData = JSON.parse(jsonString);
   console.log(apiData);
   showSunInfo(apiData);
+  calculateTime(apiData);
 };
 
 var showSunInfo = function(apiData){
@@ -124,6 +124,14 @@ var getLatLong = function(){
      target.className = "";
   };
 };
+
+var calculateTime = function(apiData){
+  var presentTime = new Date().toLocaleTimeString({hour12: false});
+  console.log(presentTime);
+  var sunriseTime = apiData.results.sunrise;
+  console.log(sunriseTime)
+
+}
 
 var createMap = function(){
   var container = document.getElementById("map");

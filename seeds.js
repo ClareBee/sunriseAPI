@@ -12,7 +12,9 @@ var places = [
   },
   {
     place: "bla",
-    sunrise: "bla"
+    sunrise: "bla",
+    lat: '123',
+    lng: '456'
   }
 ];
 
