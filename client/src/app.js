@@ -27,9 +27,10 @@ var requestCompleteFavSun = function(){
 }
 
 var displayFavSun = function(apiData){
-  var pop = document.getElementById("hidden");
-  pop.textContent = apiData.results.sunrise;
-  pop.classList.toggle('show');
+  var time = document.getElementById("time");
+  time.textContent = apiData.results.sunrise;
+  var labelForTime = document.getElementById("hidden");
+  labelForTime.classList.toggle('show');
 }
 
 var showFavInfo = function(dbData){
@@ -106,7 +107,7 @@ var app = function(){
   createMap();
   setTimeout(function() {
     getLatLong();
-  }, 5000);
+  }, 4500);
 
   var googlemap = document.getElementById("map");
   googlemap.addEventListener('change', function(){
