@@ -99,7 +99,7 @@ var displayFavSun = function(apiData){
   var time = document.getElementById("time");
   time.textContent = apiData.results.sunrise;
   var labelForTime = document.getElementById("hidden");
-  labelForTime.classList.toggle('show');
+  labelForTime.classList.toggle("show");
 }
 
 var showFavInfo = function(dbData){
@@ -114,7 +114,17 @@ var showFavInfo = function(dbData){
     // makeRequest(newUrl, requestCompleteFavSun);
     // });
     li.className = "list-group-item";
-    li.innerHTML = '<form action="/places/' + fav._id + '/delete" method="POST"><input type="hidden" value="' + fav.latitude + ',' + fav.longitude + '">' + fav.name + '<button type="submit" class="pull-right btn btn-secondary">Delete</button></form><button id="sunriseBtn" type="button" class="searchBtn btn btn-primary pull-right"> Get sunrise</button>';
+    li.innerHTML = '<form action="/places/' + fav._id + '/delete" method="POST"><input type="hidden" value="' + fav.latitude + ',' + fav.longitude + '">' + fav.name + '<button type="submit" class="pull-right btn btn-secondary">Delete</button></form>';
+    var searchButton = document.createElement('button');
+    searchButton.innerHTML = '<button id="sunriseBtn" type="button" class="searchBtn btn btn-primary pull-right"> Get sunrise</button>';
+    li.append(searchButton);
+    searchButton.addEventListener("click", function(){
+      var input = this.previousSibling.childNodes[0];
+      var lat = input.value.split(',')[0];
+      var long = input.value.split(',')[1];
+      var newUrl = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`;
+      makeRequest(newUrl, requestCompleteFavSun);
+    });
     ul.append(li);
   }
 };
