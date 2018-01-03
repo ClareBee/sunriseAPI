@@ -125,3 +125,14 @@ main.container {
 footer {
   height: 100px;
 }
+
+.latestSunrise {
+  position: relative;
+  visibility: hidden;
+  z-index: 2;
+  width: 200px;
+}
+.show {
+  visibility: visible;
+  z-index: 2;
+}

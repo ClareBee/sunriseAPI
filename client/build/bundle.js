@@ -87,15 +87,37 @@ var requestCompleteFav = function(){
   showFavInfo(dbData);
 }
 
+var requestCompleteFavSun = function(){
+  if (this.status !== 200) return console.log("request failed");
+  console.log('api accessed');
+  var jsonString = this.responseText;
+  var apiData = JSON.parse(jsonString);
+  displayFavSun(apiData);
+}
+
+var displayFavSun = function(apiData){
+  var pop = document.getElementById("hidden");
+  pop.textContent = apiData.results.sunrise;
+  pop.classList.toggle('show');
+}
+
 var showFavInfo = function(dbData){
   for(fav of dbData){
     var ul = document.getElementById("fav-list");
     var li = document.createElement("li");
+    // li.addEventListener("click", function(){
+    // var input = this.getElementsByTagName('input');
+    // var lat = input[0].value.split(',')[0];
+    // var long = input[0].value.split(',')[1];
+    // var newUrl = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`;
+    // makeRequest(newUrl, requestCompleteFavSun);
+    // });
     li.className = "list-group-item";
-    li.innerHTML = '<form action="/places/' + fav._id + '/delete" method="POST" >' + fav.name + '<button type="submit" class="pull-right btn btn-secondary">Delete</button></form>';
+    li.innerHTML = '<form action="/places/' + fav._id + '/delete" method="POST"><input type="hidden" value="' + fav.latitude + ',' + fav.longitude + '">' + fav.name + '<button type="submit" class="pull-right btn btn-secondary">Delete</button></form><button id="sunriseBtn" type="button" class="searchBtn btn btn-primary pull-right"> Get sunrise</button>';
     ul.append(li);
   }
 };
+
 
 
 var requestComplete = function(){
@@ -159,6 +181,13 @@ var app = function(){
   googlemap.addEventListener('change', function(){
     getLatLong();
   });
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  });
+  $('.popover-dismiss').popover({
+  trigger: 'focus'
+})
+
 };
 window.addEventListener('load', app);
 

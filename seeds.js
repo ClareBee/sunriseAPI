@@ -4,8 +4,8 @@ db.dropDatabase();
 var places = [
   {
     name: "Your favourite places appear here",
-    lat: "123",
-    lng: "345"
+    latitude: "123",
+    longitude: "345"
   }
 ];
 
