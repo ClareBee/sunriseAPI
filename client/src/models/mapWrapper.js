@@ -178,7 +178,8 @@ MapWrapper.prototype.streetView = function(location){
               pitch: 0,
               zoom: 1
             },
-            visible: true
+            visible: true,
+            styles:
           });
   this.googleMap.setStreetView(panorama);
 };

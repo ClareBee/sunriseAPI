@@ -9,6 +9,7 @@ body {
 #pano {
      height: 400px;
      width: 100%;
+     filter: grayscale(100%);
    }
 #description {
        font-family: Roboto;
