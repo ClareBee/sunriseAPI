@@ -83,6 +83,7 @@
     <form method="POST" action="/places" class="col-md-6">
     <section>
       <h3 id="placeName"></h3>
+      <input type="hidden" id="name" name="name">
       <br>
       <h2>Sunrise:</h2>
       <p id="sunrise"></p>
@@ -91,10 +92,8 @@
       <br>
     </section>
       <section id="hiddenCoords">
-        <h3>Latitude:</h3>
-        <p id="latitude"></p>
-        <h3>Longitude:</h3>
-        <p id="longitude"></p>
+        <input type="hidden" id="latitude" name="latitude">
+        <input type="hidden" id="longitude" name="longitude">
       </section>
       <button type="submit" class="btn btn-secondary pull-right">Add Location to Favourites</button>
 

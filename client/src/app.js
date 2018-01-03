@@ -23,7 +23,7 @@ var showFavInfo = function(dbData){
     var ul = document.getElementById("fav-list");
     var li = document.createElement("li");
     li.className = "list-group-item";
-    li.innerHTML = '<form action="/places/' + fav._id + '/delete" method="POST" >' + fav.place + fav.sunrise + '<button type="submit" class="pull-right btn btn-secondary">Delete</button></form>';
+    li.innerHTML = '<form action="/places/' + fav._id + '/delete" method="POST" >' + fav.name + '<button type="submit" class="pull-right btn btn-secondary">Delete</button></form>';
     ul.append(li);
   }
 };
@@ -47,8 +47,8 @@ var showSunInfo = function(apiData){
 
 var getLatLong = function(){
   var target = document.getElementById('latitude');
-  var lat = document.getElementById('latitude').innerHTML;
-  var long = document.getElementById('longitude').innerHTML;
+  var lat = document.getElementById('latitude').value;
+  var long = document.getElementById('longitude').value;
   if(target.className == "locationAdded"){
      var sunriseurl = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`;
      makeRequest(sunriseurl, requestComplete);
@@ -61,7 +61,6 @@ var calculateTime = function(apiData){
   console.log(presentTime);
   var sunriseTime = apiData.results.sunrise;
   console.log(sunriseTime)
-
 }
 
 var createMap = function(){

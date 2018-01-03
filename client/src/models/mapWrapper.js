@@ -138,12 +138,15 @@ MapWrapper.prototype.createSearchBox = function(){
 };
 MapWrapper.prototype.getLocationName = function(place){
   var location = document.getElementById('placeName');
-  console.log(place);
+  var inputForPlace = document.getElementById('name');
   if(place.name == null){
     location.innerHTML = "Your location";
+    inputForPlace.value = "Your location";
   } else {
     location.innerHTML = place.name;
+    inputForPlace.value = place.name;
   }
+
 };
 MapWrapper.prototype.removeMarker = function(){
   if(this.markers.length >= 1){
@@ -201,8 +204,8 @@ MapWrapper.prototype.showCoords = function(marker){
   var lat = document.getElementById("latitude");
   var long = document.getElementById("longitude");
   lat.className = "locationAdded";
-  lat.innerHTML = marker.position.lat();
-  long.innerHTML = marker.position.lng();
+  lat.value = marker.position.lat();
+  long.value = marker.position.lng();
 }
 
 MapWrapper.prototype.userLocation = function(){

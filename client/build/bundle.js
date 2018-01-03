@@ -92,7 +92,7 @@ var showFavInfo = function(dbData){
     var ul = document.getElementById("fav-list");
     var li = document.createElement("li");
     li.className = "list-group-item";
-    li.innerHTML = '<form action="/places/' + fav._id + '/delete" method="POST" >' + fav.place + fav.sunrise + '<button type="submit" class="pull-right btn btn-secondary">Delete</button></form>';
+    li.innerHTML = '<form action="/places/' + fav._id + '/delete" method="POST" >' + fav.name + '<button type="submit" class="pull-right btn btn-secondary">Delete</button></form>';
     ul.append(li);
   }
 };
@@ -116,8 +116,8 @@ var showSunInfo = function(apiData){
 
 var getLatLong = function(){
   var target = document.getElementById('latitude');
-  var lat = document.getElementById('latitude').innerHTML;
-  var long = document.getElementById('longitude').innerHTML;
+  var lat = document.getElementById('latitude').value;
+  var long = document.getElementById('longitude').value;
   if(target.className == "locationAdded"){
      var sunriseurl = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`;
      makeRequest(sunriseurl, requestComplete);
@@ -130,7 +130,6 @@ var calculateTime = function(apiData){
   console.log(presentTime);
   var sunriseTime = apiData.results.sunrise;
   console.log(sunriseTime)
-
 }
 
 var createMap = function(){
@@ -308,12 +307,15 @@ MapWrapper.prototype.createSearchBox = function(){
 };
 MapWrapper.prototype.getLocationName = function(place){
   var location = document.getElementById('placeName');
-  console.log(place);
+  var inputForPlace = document.getElementById('name');
   if(place.name == null){
     location.innerHTML = "Your location";
+    inputForPlace.value = "Your location";
   } else {
     location.innerHTML = place.name;
+    inputForPlace.value = place.name;
   }
+
 };
 MapWrapper.prototype.removeMarker = function(){
   if(this.markers.length >= 1){
@@ -371,8 +373,8 @@ MapWrapper.prototype.showCoords = function(marker){
   var lat = document.getElementById("latitude");
   var long = document.getElementById("longitude");
   lat.className = "locationAdded";
-  lat.innerHTML = marker.position.lat();
-  long.innerHTML = marker.position.lng();
+  lat.value = marker.position.lat();
+  long.value = marker.position.lng();
 }
 
 MapWrapper.prototype.userLocation = function(){
