@@ -324,8 +324,14 @@ MapWrapper.prototype.createMarker = function(place){
     position: place.geometry.location
   });
   var locate = place.geometry.location;
+  var newLocationString = '<div class="content">' +
+      '<div class="bodyContent">' +
+      `<h4>Your new location</h4>` +
+      `<p>Lat: ${locate.lat().toFixed(4)} <br> Lng: ${locate.lng().toFixed(4)}</p>` +
+      '</div>' +
+      '</div>';
   newMarker.infowindow = new google.maps.InfoWindow({
-    content: "Your new location"
+    content: newLocationString
   });
   newMarker.infowindow.open(this.googleMap, newMarker);
   this.markers.push(newMarker);
@@ -375,7 +381,6 @@ MapWrapper.prototype.userLocation = function(){
     marker.infowindow.open(this.googleMap, marker);
     marker.infowindowOpen = true;
     this.showCoords(marker);
-    console.log(marker + "hi");
   }.bind(this));
 
 };
