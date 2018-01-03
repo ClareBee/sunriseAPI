@@ -30,20 +30,13 @@ var displayFavSun = function(apiData){
   var time = document.getElementById("time");
   time.textContent = apiData.results.sunrise;
   var labelForTime = document.getElementById("hidden");
-  labelForTime.classList.toggle("show");
+  labelForTime.classList.toggle("showing");
 }
 
 var showFavInfo = function(dbData){
   for(fav of dbData){
     var ul = document.getElementById("fav-list");
     var li = document.createElement("li");
-    // li.addEventListener("click", function(){
-    // var input = this.getElementsByTagName('input');
-    // var lat = input[0].value.split(',')[0];
-    // var long = input[0].value.split(',')[1];
-    // var newUrl = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`;
-    // makeRequest(newUrl, requestCompleteFavSun);
-    // });
     li.className = "list-group-item";
     li.innerHTML = '<form action="/places/' + fav._id + '/delete" method="POST"><input type="hidden" value="' + fav.latitude + ',' + fav.longitude + '">' + fav.name + '<button type="submit" class="pull-right btn btn-secondary">Delete</button></form>';
     var searchButton = document.createElement('button');
@@ -61,14 +54,12 @@ var showFavInfo = function(dbData){
 };
 
 
-
 var requestComplete = function(){
   if(this.status !== 200) return;
   var jsonString = this.responseText;
   var apiData = JSON.parse(jsonString);
   console.log(apiData);
   showSunInfo(apiData);
-  calculateTime(apiData);
 };
 
 var showSunInfo = function(apiData){
@@ -76,6 +67,7 @@ var showSunInfo = function(apiData){
   sunriseTime.innerHTML = apiData.results.sunrise;
   var sunsetTime = document.getElementById('sunset');
   sunsetTime.innerHTML = apiData.results.sunset;
+  calculateTime(apiData);
 };
 
 var getLatLong = function(){
@@ -91,9 +83,32 @@ var getLatLong = function(){
 
 var calculateTime = function(apiData){
   var presentTime = new Date().toLocaleTimeString({hour12: false});
-  console.log(presentTime);
+  var numericalTimeNow = presentTime.split(":");
+  var minsNow = parseInt(numericalTimeNow[0]) * 60 + parseInt(numericalTimeNow[1]);
   var sunriseTime = apiData.results.sunrise;
-  console.log(sunriseTime)
+  var mins = 0;
+  var hoursToGo = 0;
+  if(sunriseTime.match(/PM/)){
+    var newTime = sunriseTime.trim().slice(0, -2);
+    var numericalTime = newTime.split(":");
+    mins = parseInt(numericalTime[0]) * 60 + parseInt(numericalTime[1]) + (12 * 60);
+  } else {
+    var newTime = sunriseTime.trim().slice(0, -2);
+    var numericalTime = newTime.split(":");
+    mins = parseInt(numericalTime[0]) * 60 + parseInt(numericalTime[1]);
+  }
+  console.log(mins);
+  console.log(minsNow);
+  if(minsNow > mins){
+    mins += (24 * 60)
+    hoursToGo = (mins - minsNow)/60;
+  } else {
+    hoursToGo = (mins - minsNow)/60;
+  }
+  var title = document.getElementById("placeName");
+  var result = document.createElement("h4");
+  result.textContent = hoursToGo.toFixed(2) + " hours to go until the next sunrise";
+  title.append(result);
 }
 
 var createMap = function(){

@@ -132,7 +132,7 @@ footer {
   z-index: 2;
   width: 200px;
 }
-.show {
+.showing {
   visibility: visible;
   z-index: 2;
 }
