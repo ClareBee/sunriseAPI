@@ -142,14 +142,11 @@ var showSunInfo = function(apiData){
 };
 
 var getLatLong = function(){
-  var target = document.getElementById('latitude');
-  var lat = document.getElementById('latitude').value;
-  var long = document.getElementById('longitude').value;
-  if(target.className == "locationAdded"){
-     var sunriseurl = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`;
-     makeRequest(sunriseurl, requestComplete);
-     target.className = "";
-  };
+  var marker = mainMap.markers[0];
+  var lat = marker.position.lat();
+  var long = marker.position.lng();
+  var sunriseurl = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`;
+  makeRequest(sunriseurl, requestComplete);
 };
 
 var calculateTime = function(apiData){
@@ -168,8 +165,6 @@ var calculateTime = function(apiData){
     var numericalTime = newTime.split(":");
     mins = parseInt(numericalTime[0]) * 60 + parseInt(numericalTime[1]);
   }
-  console.log(mins);
-  console.log(minsNow);
   if(minsNow > mins){
     mins += (24 * 60)
     hoursToGo = (mins - minsNow)/60;
@@ -182,37 +177,29 @@ var calculateTime = function(apiData){
 
 var createMap = function(){
   var container = document.getElementById("map");
-  var center = { lat: 56.740674, lng: -4.2187500 };
-  var zoom = 7;
+  var center = { lat: 52.740674, lng: -2.2187500 };
+  var zoom = 6;
   mainMap = new MapWrapper(container, center, zoom);
-
   // geolocation
   mainMap.userLocation();
   // search box
   mainMap.createSearchBox();
-
+  setTimeout(function(){
+    getLatLong();
+  }, 4000);
 };
 
 var app = function(){
-  var url = "/places";
-  makeRequest(url, requestCompleteFav);
   window.scrollTo(0, 0);
   createMap();
-  setTimeout(function() {
-    getLatLong();
-  }, 4500);
-
-  var googlemap = document.getElementById("map");
-  googlemap.addEventListener('change', function(){
-    getLatLong();
+  var url = "/places";
+  makeRequest(url, requestCompleteFav);
+  var googlemap = document.getElementById("pac-input");
+  googlemap.addEventListener('keydown', function(e){
+    if(e.keyCode == 13){
+      getLatLong();
+    }
   });
-  $(function () {
-    $('[data-toggle="popover"]').popover()
-  });
-  $('.popover-dismiss').popover({
-  trigger: 'focus'
-})
-
 };
 window.addEventListener('load', app);
 

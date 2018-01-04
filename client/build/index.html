@@ -16,101 +16,100 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <a class="navbar-brand" href="#"><i class="fa fa-sun-o" aria-hidden="true"></i> Rise&amp;Shine</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <a class="navbar-brand" href="#"><i class="fa fa-sun-o" aria-hidden="true"></i> Rise&amp;Shine</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Links
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#"></a>
-          <a class="dropdown-item" href="#favs">Favourites</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="https://sunrise-sunset.org/api" target="_blank">Original SunriseSunset API</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Links
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#"></a>
+            <a class="dropdown-item" href="#favs">Favourites</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="https://sunrise-sunset.org/api" target="_blank">Original SunriseSunset API</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
   <header>
-  <div class="jumbotron jumbotron-fluid" id="jumbo">
-  <div class="container">
-    <h1 class="display-2"><i class="fa fa-sun-o"></i>Rise&amp;Shine</h1>
-    <p class="lead">Find sunrise the world over</p>
-    <!-- Button trigger modal -->
-<button id="aboutBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  About
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">About Rise&amp;Shine</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+    <div class="jumbotron jumbotron-fluid" id="jumbo">
+      <div class="container">
+        <h1 class="display-2"><i class="fa fa-sun-o"></i>Rise&amp;Shine</h1>
+        <p class="lead">Find sunrise the world over</p>
+        <!-- Button trigger modal -->
+        <button id="aboutBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          About
         </button>
-      </div>
-      <div class="modal-body">
-        Simply start typing the place you're looking for into the map, select one of the results and see what time the sun rises. <hr /> If you have a favourite place, add it to the list to check later!
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">About Rise&amp;Shine</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Simply start typing the place you're looking for into the map, select one of the results and see what time the sun rises. <hr /> If you have a favourite place, add it to the list to check later!
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-  </div>
-  </div>
-</header>
+  </header>
 
   <main class="container">
     <div class="row">
       <div class="col-md-6">
         <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-         <div id="map"></div>
-         <div id="pano"></div>
-     </div>
-    <form method="POST" action="/places" class="col-md-6">
-    <section>
-      <h3 id="placeName"></h3>
-      <h4 id="hours-to-go"></h4>
-      <input type="hidden" id="name" name="name">
+        <div id="map"></div>
+        <div id="pano"></div>
+      </div>
+      <form method="POST" action="/places" class="col-md-6">
+        <section>
+          <h3 id="placeName"></h3>
+          <h4 id="hours-to-go"></h4>
+          <input type="hidden" id="name" name="name">
+          <br>
+          <h2>Sunrise:</h2>
+          <p id="sunrise"></p>
+          <h3>Sunset:</h3>
+          <p id="sunset"></p>
+          <br>
+        </section>
+        <section id="hiddenCoords">
+          <input type="hidden" id="latitude" name="latitude">
+          <input type="hidden" id="longitude" name="longitude">
+        </section>
+        <button id="addBtn" type="submit" class="btn btn-secondary pull-right">Add Location to Favourites</button>
+      </form>
+    </div>
+    <hr />
+    <section class="container" id="favs">
+      <h2 id="fav-title"><i class="fa fa-sun-o"></i>Favourites</h2>
+      <div class="latestSunrise" id="hidden">Latest sunrise at this location: <p id="time"></p></div>
       <br>
-      <h2>Sunrise:</h2>
-      <p id="sunrise"></p>
-      <h3>Sunset:</h3>
-      <p id="sunset"></p>
+      <ul id="fav-list" class="list-group">
+      </ul>
       <br>
     </section>
-      <section id="hiddenCoords">
-        <input type="hidden" id="latitude" name="latitude">
-        <input type="hidden" id="longitude" name="longitude">
-      </section>
-      <button type="submit" class="btn btn-secondary pull-right">Add Location to Favourites</button>
-
-  </form>
-  </div>
-<hr />
-<section class="container" id="favs">
-  <h2 id="fav-title">Favourites:</h2>
-  <div class="latestSunrise" id="hidden">Latest sunrise at this location: <p id="time"></p></div>
-  <br>
-  <ul id="fav-list" class="list-group">
-  </ul>
-  <br>
-</section>
-</main>
-<footer></footer>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+  </main>
+  <footer></footer>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
 </body>
 </html>

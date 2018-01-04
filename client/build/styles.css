@@ -1,5 +1,9 @@
+* {
+  color: #1E1C1F;
+}
+
 body {
-  background-color: white;
+  background-color: #FDFFFC;
 }
 .row {
   margin: 0;
@@ -13,90 +17,86 @@ main.container {
 }
 
 #map {
-   height: 400px;
-   width: 100%;
-   border-radius: 5px;
- }
+  height: 400px;
+  width: 100%;
+  border-radius: 5px;
+}
 #pano {
-   height: 400px;
-   width: 100%;
-   -webkit-filter: grayscale(100%);
-   filter: grayscale(100%);
-   border-radius: 5px;
+  height: 400px;
+  width: 100%;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  border-radius: 5px;
 }
 
 #description {
   font-family: 'Roboto', sans-serif;
-   font-size: 15px;
-   font-weight: 300;
+  font-size: 15px;
+  font-weight: 300;
 }
 
 #infowindow-content .title {
- font-weight: bold;
+  font-weight: bold;
 }
 
 #infowindow-content {
- display: none;
+  display: none;
 }
 
 #map #infowindow-content {
- display: inline;
+  display: inline;
 }
 
 .pac-card {
- margin: 10px 10px 0 0;
- border-radius: 2px 0 0 2px;
- box-sizing: border-box;
- -moz-box-sizing: border-box;
- outline: none;
- box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
- background-color: #fff;
- font-family: 'Roboto', sans-serif;
+  margin: 10px 10px 0 0;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  font-family: 'Roboto', sans-serif;
 }
 
 #pac-container {
- padding-bottom: 12px;
- margin-right: 12px;
+  padding-bottom: 12px;
+  margin-right: 12px;
 }
 
 .pac-controls {
- display: inline-block;
- padding: 10px 11px;
- margin: 10px;
+  display: inline-block;
+  padding: 10px 11px;
+  margin: 10px;
 }
 
 .pac-controls label {
- font-family: 'Roboto', sans-serif ;
- font-size: 13px;
- font-weight: 300;
+  font-family: 'Roboto', sans-serif ;
+  font-size: 13px;
+  font-weight: 300;
 }
 
 #pac-input {
- background-color: #fff;
- font-family: 'Roboto', sans-serif;
- font-size: 20px;
- font-weight: 300;
- margin: 12px;
- padding: 10px 11px 0 13px;
- text-overflow: ellipsis;
- width: 60%;
+  background-color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  margin: 12px;
+  padding: 10px 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 60%;
 }
 
 #pac-input:focus {
- border-color: #4d90fe;
+  border-color: #4d90fe;
 }
 
 #title {
- color: #fff;
- background-color: #4d90fe;
- font-size: 25px;
- font-weight: 500;
- padding: 6px 12px;
+  color: #1E1C1F;
+  background-color: #4d90fe;
+  font-size: 25px;
+  font-weight: 500;
+  padding: 6px 12px;
 }
-
-/* #target {
- width: 345px;
-} */
 
 #jumbo {
   margin-top: 70px;
@@ -105,7 +105,7 @@ main.container {
   background-position: center;
 }
 #aboutBtn {
-  background-color: black;
+  background-color: #272529;
 }
 
 #hiddenCoords {
@@ -118,14 +118,21 @@ main.container {
   background-color: #F9FFA0;
   border-radius: 5px;
   padding: 10px;
+  height: 4rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 #favs {
   background-color: #F9FFA0;
   border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
-#favs-title {
-  font-size: 150%;
+#fav-title {
+  font-size: 250%;
   padding-top: 10px;
+  margin-top: 20px;
+}
+#addBtn {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 #placeName {
@@ -134,6 +141,8 @@ main.container {
   background-color: #f8f9fa;
   padding: 10px;
   border-radius: 5px;
+  height: 4rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 footer {
   height: 100px;
